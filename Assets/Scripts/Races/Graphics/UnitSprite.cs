@@ -353,7 +353,11 @@ public class UnitSprite : MonoBehaviour
             alpha = (activeTurn && actor.Movement > 0) ? .5f : .2f;
         else
             alpha = 0;
-
+        bool isleader = false;
+        if (actor.Unit.CurrentLeader == actor.Unit)
+        {
+            isleader = true;
+        }
         if (actor.Unit.FixedSide != actor.Unit.Side && TacticalUtilities.PlayerCanSeeTrueSide(actor.Unit))
         {
         if (BlueColored)
@@ -421,6 +425,13 @@ public class UnitSprite : MonoBehaviour
             }
             else
                 FlexibleSquare.color = new Color(0.8f, 0f, 0, alpha);
+        }
+        if (isleader)
+        {
+            if (activeTurn && actor.Movement > 0)
+                FlexibleSquare.color = new Color(1, 1, 0, 1);
+            else
+                FlexibleSquare.color = new Color(.8f, .8f, 0, 1);
         }
     }
 

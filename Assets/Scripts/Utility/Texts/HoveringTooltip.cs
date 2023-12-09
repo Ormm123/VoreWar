@@ -581,6 +581,10 @@ public class HoveringTooltip : MonoBehaviour
                 return "Unit's weapon damage also scales with mind. (Half as effectively as weapons main stat)";
             case Traits.ArcaneMagistrate:
                 return "Unit gains 1 focus when it hits a spell, unit gains 4 more if the spell kills the target.";
+            case Traits.TinyNoStat:
+                return "(Cheat Trait) - This unit is tiny, but does not suffer from reduced stats from it's size.";
+            case Traits.SmallNoStat:
+                return "(Cheat Trait) - This unit is small, but does not suffer from reduced stats from it's size.";
         }  
         return "<b>This trait needs a tooltip!</b>";
     }

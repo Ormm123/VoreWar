@@ -462,6 +462,10 @@ public enum Traits
     Symbiote = 298,
     /// <summary>creates a spawn unit on prey Absorption</summary>
     CreateSpawn = 299,
+    /// <summary>This unit is tiny, but does not suffer from reduced stats from it's size.</summary>
+    TinyNoStat = 300,
+    /// <summary>This unit is small, but does not suffer from reduced stats from it's size.</summary>
+    SmallNoStat = 301,
 
     // Growth-related section
     /// <summary>Unit increases in size when absorbing prey.</summary>

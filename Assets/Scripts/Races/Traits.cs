@@ -309,6 +309,16 @@ static class TraitList
         [Traits.AccuteDodge] = new Booster("Unit has a 10% chance to minimise recieved damage when being attacked. (Excludes spells and vore damage).", (s) => { s.Outgoing.GrazeRateShift += 0.1f; }),
         [Traits.ViralDigestion] = new ViralDigestion(),
         [Traits.AwkwardShape] = new Booster("This unit has a very strange body type, making them harder to swallow and providing less sustenance as prey.", (s) => { s.Incoming.VoreOddsMult *= 0.75f; s.Outgoing.Nutrition *= 0.25f; }),
+        [Traits.TinyNoStat] = new Booster("(Cheat Trait)-This unit is tiny, but does not suffer from reduced stats from it's size.", (s) =>
+        {
+            s.Scale /= 3.0f; 
+            s.StatMult *= 3.0f; //This is ass but it seems to work just fine
+        }),
+        [Traits.SmallNoStat] = new Booster("(Cheat Trait)-This unit is small, but does not suffer from reduced stats from it's size.", (s) =>
+        {
+            s.Scale *= 2.0f / 3.0f;
+            s.StatMult *= 3.0f / 2.0f; //This is equally ass but it seems to work just fine
+        }),
     };
 
 }
