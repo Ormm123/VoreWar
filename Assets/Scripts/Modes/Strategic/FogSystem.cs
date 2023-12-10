@@ -50,7 +50,13 @@ class FogSystem
                 ClearWithinXTilesOf(army.Position);
             }
         }
-
+        foreach (ClaimableBuilding claimableBuilding in State.World.Claimables)
+        {
+            if (claimableBuilding.Owner == playerEmpire)
+            {
+                ClearWithin1TileOf(claimableBuilding.Position);
+            }
+        }
         for (int i = 0; i <= FoggedTile.GetUpperBound(0); i++)
         {
             for (int j = 0; j <= FoggedTile.GetUpperBound(1); j++)
@@ -58,8 +64,7 @@ class FogSystem
                 if (FoggedTile[i, j])
                     FogOfWar.SetTile(new Vector3Int(i, j, 0), FogTile);
             }
-        }
-
+        } 
         foreach (Army army in StrategicUtilities.GetAllHostileArmies(playerEmpire))
         {
             var spr = army.Banner?.GetComponent<MultiStageBanner>();
@@ -112,6 +117,19 @@ class FogSystem
     void ClearWithinXTilesOf(Vec2i pos)
     {
         int dist = Config.FogDistance - ((State.World.IsNight && Config.FogOfWar) ? Config.NightStrategicSightReduction : 0);
+        for (int x = pos.x - dist; x <= pos.x + dist; x++)
+        {
+            for (int y = pos.y - dist; y <= pos.y + dist; y++)
+            {
+                if (x < 0 || y < 0 || x > FoggedTile.GetUpperBound(0) || y > FoggedTile.GetUpperBound(1))
+                    continue;
+                FoggedTile[x, y] = false;
+            }
+        }
+    }
+    void ClearWithin1TileOf(Vec2i pos)
+    {
+        int dist = 1;
         for (int x = pos.x - dist; x <= pos.x + dist; x++)
         {
             for (int y = pos.y - dist; y <= pos.y + dist; y++)
