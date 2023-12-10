@@ -497,6 +497,9 @@ public class ContentSettings : MonoBehaviour
             case Race.Goodra:
                 tooltip.value = 257;
                 break;
+            case Race.Whisp:
+                tooltip.value = 280;
+                break;
         }
         return spawner;
     }
